@@ -2,6 +2,8 @@
 
 This project provides a Dockerized environment to build custom OpenWrt images for an **OpenWRT router** in this case the **Zyxel WSM20** (ramips/mt7621) with **mesh11sd** pre-installed and custom startup configurations.
 
+It should be very easy to update the platform and other information to target a different router. Eventually I'll parameterize it, but for now this does what I need.
+
 ## 📂 Project Structure
 Ensure your local directory looks like this before building:
 ```text
