@@ -20,10 +20,16 @@ RUN wget https://downloads.openwrt.org/releases/${RELEASE}/targets/${TARGET}/${S
     && tar --zstd -xvf *.tar.zst --strip-components=1 \
     && rm *.tar.zst
 
-# Create directory for custom files (startup scripts, etc.)
-RUN mkdir -p files/etc/uci-defaults
+# 1. Create the directory structure inside the container for your files
+RUN mkdir -p files/etc/uci-defaults 
+
+# 2. COPY your local files from your computer into the container
+# This assumes you have a 'files' folder in the same directory as your Dockerfile
+COPY files/ ./files/
+
+# 3. NOW run chmod on the files that were just copied
+RUN chmod +x files/etc/uci-defaults/99*
 
 COPY build.sh .
-RUN chmod +x build.sh
 
 CMD ["./build.sh"]
